@@ -1,0 +1,29 @@
+# Jean Souza - Professional Development Standards
+
+## Core Stack
+- **Framework:** Next.js 15+ (App Router).
+- **Language:** TypeScript (Strict Mode, no 'any').
+- **Styling:** Tailwind CSS (Utility-first approach).
+- **UI Components:** shadcn/ui (Radix UI based).
+- **Icons:** Lucide React.
+
+## Coding Principles (Clean Code)
+- **S.O.L.I.D:** Aplicar princípios de responsabilidade única e inversão de dependência.
+- **Components:** Componentes pequenos, reutilizáveis e com nomes descritivos.
+- **RSC First:** Sempre usar React Server Components por padrão. Usar 'use client' apenas quando necessário (hooks, interatividade).
+- **Dry vs Moist:** Evitar duplicação desnecessária, mas priorizar a legibilidade.
+
+## Accessibility (A11y)
+- **Semantics:** Uso obrigatório de tags HTML5 semânticas (main, nav, section, article).
+- **Focus:** Gerenciamento de foco e suporte total a navegação por teclado.
+- **ARIA:** Usar atributos ARIA apenas quando o HTML nativo não for suficiente.
+- **Contraste:** Garantir conformidade com as diretrizes WCAG.
+
+## Environment & Tools
+- **OS:** Linux Mint (Bash terminal).
+- **Package Manager:** npm.
+- **Git:** Usar Conventional Commits (feat, fix, chore, refactor).
+
+## Output Expectations
+- Sempre verifique erros de tipagem antes de considerar a tarefa concluída.
+- Ao sugerir mudanças de estilo, mantenha a consistência com a nova paleta de cores definida no `tailwind.config.ts`.
