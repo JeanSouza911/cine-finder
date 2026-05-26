@@ -25,7 +25,7 @@ export default function Home() {
     fetchPopularMovies();
   }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.SubmitEvent) => {
     e.preventDefault();
     if (searchQuery) {
       router.push(`/search?q=${searchQuery}`);
@@ -40,18 +40,18 @@ export default function Home() {
           placeholder="Busque um filme..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="flex-grow"
+          className="grow"
         />
-        <Button type="submit">
-          <FaSearch className="mr-2" /> Buscar
+       <Button type="submit" className="cursor-pointer hover:bg-primary/80 transition-colors duration-200">
+        <FaSearch className="mr-2" /> Buscar
         </Button>
       </form>
 
-      <h2 className="text-2xl font-bold mb-6">Filmes Populares</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {popularMovies.length === 0 ? (
-          <p>Carregando filmes...</p>
-        ) : (
+        <h2 className="text-2xl font-bold mb-6">Filmes Populares</h2>
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {popularMovies.length === 0 ? (
+           <p>Carregando filmes...</p>
+          ) : (
           popularMovies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))
