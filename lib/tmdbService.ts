@@ -1,4 +1,4 @@
-interface Movie {
+export interface Movie {
   id: number;
   title: string;
   poster_path: string;
@@ -18,31 +18,36 @@ interface PaginatedResponse<T> {
   total_results: number;
 }
 
-const API_BASE_URL = "https://api.themoviedb.org/3/";
+const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 
 const fetchFromTmdb = async <T>(endpoint: string): Promise<T> => {
-  const url = `${API_BASE_URL}${endpoint}?api_key=${API_KEY}`;
+  // Garante que o endpoint comece com / (ex: /movie/popular)
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  
+  const url = `${API_BASE_URL}${cleanEndpoint}?api_key=${API_KEY}`;
+  
   const response = await fetch(url);
   if (!response.ok) {
-    throw new Error(`Erro ao buscar dados do TMDB: ${response.statusText}`);
+    throw new Error(`Erro ao buscar dados do TMDB: ${response.status} ${response.statusText}`);
   }
   return response.json();
 };
 
 export const getPopularMovies = async (): Promise<PaginatedResponse<Movie>> => {
-  return fetchFromTmdb<PaginatedResponse<Movie>>("movie/popular");
+  return fetchFromTmdb<PaginatedResponse<Movie>>("/movie/popular");
 };
 
 export const searchMovies = async (query: string): Promise<PaginatedResponse<Movie>> => {
-  return fetchFromTmdb<PaginatedResponse<Movie>>(`search/movie?query=${query}`);
+  return fetchFromTmdb<PaginatedResponse<Movie>>(`/search/movie?query=${query}`);
 };
 
 export const getMovieDetails = async (id: number): Promise<Movie> => {
   return fetchFromTmdb<Movie>(`movie/${id}`);
 };
 
-export const getMovieImageUrl = (path: string, size: "w500" | "original" = "w500"): string => {
-  return `${IMAGE_BASE_URL}${size}${path}`;
+export const getMovieImageUrl = (path: string | null): string => {
+  if (!path) return "/placeholder.png"; // Imagem padrão caso não tenha poster
+  return `${IMAGE_BASE_URL}/w500${path}`;
 };
