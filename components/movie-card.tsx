@@ -33,9 +33,20 @@ export function MovieCard({ movie, showLink = true }: MovieCardProps) {
             <FaStar className="text-yellow-400" /> {movie.vote_average}
           </p>
           {showLink && (
-            <Link href={`/movie/${movie.id}`} className="text-primary hover:underline mt-2 inline-block">
-              Detalhes
-            </Link>
+         <div className="w-full flex justify-center mt-4">
+             <Link 
+  href={`/movie/${movie.id}`} 
+  className={`
+    inline-flex items-center justify-center 
+    px-4 py-2 
+    bg-primary text-primary-foreground text-sm font-medium 
+    rounded-md shadow-sm
+    hover:bg-primary/80 transition-colors duration-200
+  `}
+>
+  Detalhes
+</Link>
+  </div>
           )}
         </div>
       </CardContent>
