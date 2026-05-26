@@ -38,7 +38,7 @@ export default function MoviePage() {
     return <p className="text-center py-8">Carregando...</p>;
   }
 
-  const imageUrl = getMovieImageUrl(movie.poster_path, "w500");
+  const imageUrl = getMovieImageUrl(movie.poster_path);
 
   return (
     <main className="container mx-auto px-4 py-8">
