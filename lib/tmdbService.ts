@@ -23,15 +23,17 @@ const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p";
 
 const fetchFromTmdb = async <T>(endpoint: string): Promise<T> => {
-  // Garante que o endpoint comece com / (ex: /movie/popular)
   const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
-  
-  const url = `${API_BASE_URL}${cleanEndpoint}?api_key=${API_KEY}`;
-  
+
+  const separator = cleanEndpoint.includes('?') ? '&' : '?';
+  const url = `${API_BASE_URL}${cleanEndpoint}${separator}api_key=${API_KEY}`;
+
   const response = await fetch(url);
+  
   if (!response.ok) {
-    throw new Error(`Erro ao buscar dados do TMDB: ${response.status} ${response.statusText}`);
+    throw new Error(`Erro ao buscar dados do TMDB: ${response.status}`);
   }
+
   return response.json();
 };
 
