@@ -25,6 +25,7 @@ export function MovieCard({ movie, showLink = true }: MovieCardProps) {
           alt={movie.title}
           width={500}
           height={750}
+          priority
           className="w-full h-auto object-cover rounded-t-xl"
         />
         <div className="p-4 flex flex-col gap-2">
