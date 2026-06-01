@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getMovieImageUrl } from "@/lib/tmdbService";
 import Image from "next/image";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
+import { Star } from "lucide-react";
 
 interface MovieCardProps {
   movie: {
@@ -31,7 +31,7 @@ export function MovieCard({ movie, showLink = true }: MovieCardProps) {
         <div className="p-4 flex flex-col gap-2">
           <h2 className="text-lg font-semibold line-clamp-1">{movie.title}</h2>
           <p className="flex items-center gap-1 text-sm text-muted-foreground">
-            <FaStar className="text-yellow-400" /> {movie.vote_average}
+            <Star className="text-yellow-400" /> {movie.vote_average}
           </p>
           {showLink && (
          <div className="w-full flex justify-center mt-4">

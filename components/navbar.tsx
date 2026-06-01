@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { BiCameraMovie, BiSearchAlt2 } from "react-icons/bi";
+import { Clapperboard, Search } from "lucide-react";
 
 export function Navbar() {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -25,23 +25,24 @@ export function Navbar() {
           className="font-bold text-xl tracking-tight cursor-pointer flex items-center gap-2 select-none shrink-0" 
           onClick={() => router.push("/")}
         >
-          <BiCameraMovie className="text-primary h-5 w-5" /> 
+          <Clapperboard className="text-primary h-5 w-5" /> 
           <span>CineFinder</span>
         </div>
 
-        <form onSubmit={handleSearch} className="flex w-full max-w-md gap-2 ml-4">
+        <form onSubmit={handleSearch} className="flex flex-1 sm:flex-initial w-full max-w-md gap-2 ml-2 sm:ml-4">
           <Input
             type="text"
-            placeholder="Busque um filme..."
+            placeholder="Busque um filme"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="grow"
           />
           <Button 
-            type="submit" 
+            type="submit"
             className="cursor-pointer hover:bg-primary/80 transition-colors duration-200 shrink-0"
           >
-            <BiSearchAlt2 className="mr-2" /> Buscar
+            <Search className="sm:mr-2" />
+            <span className="hidden sm:inline">Buscar</span>
           </Button>
         </form>
         

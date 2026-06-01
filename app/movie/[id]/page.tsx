@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { getMovieDetails, getMovieImageUrl, Movie } from "@/lib/tmdbService";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { FaStar, FaWallet, FaChartBar, FaClock, FaCalendarAlt, FaFileAlt } from "react-icons/fa";
+import { Star, Wallet, TrendingUp, Clock, Calendar, FileText } from "lucide-react";
 import Image from "next/image";
 
 export default function MoviePage() {
@@ -57,32 +57,32 @@ export default function MoviePage() {
             <CardTitle className="text-3xl font-bold">{movie.title}</CardTitle>
             {movie.tagline && <CardDescription className="text-lg mt-2">{movie.tagline}</CardDescription>}
             <p className="flex items-center gap-1 text-sm text-muted-foreground mt-2">
-              <FaStar className="text-yellow-400" /> {movie.vote_average}
+              <Star className="text-yellow-400" /> {movie.vote_average}
             </p>
           </CardHeader>
 
           <CardContent className="p-0 py-4 flex flex-col gap-4">
             {movie.budget && movie.budget > 0 && (
               <div className="flex items-center gap-2">
-                <FaWallet className="text-muted-foreground" />
+                <Wallet className="text-muted-foreground" />
                 <p>Orçamento: {formatCurrency(movie.budget)}</p>
               </div>
             )}
             {movie.revenue && movie.revenue > 0 && (
               <div className="flex items-center gap-2">
-                <FaChartBar className="text-muted-foreground" />
+                <TrendingUp className="text-muted-foreground" />
                 <p>Receita: {formatCurrency(movie.revenue)}</p>
               </div>
             )}
             {movie.runtime && (
               <div className="flex items-center gap-2">
-                <FaClock className="text-muted-foreground" />
+                <Clock className="text-muted-foreground" />
                 <p>Duração: {movie.runtime} minutos</p>
               </div>
             )}
             {movie.release_date && (
               <div className="flex items-center gap-2">
-                <FaCalendarAlt className="text-muted-foreground" />
+                <Calendar className="text-muted-foreground" />
                 <p>Lançamento: {movie.release_date}</p>
               </div>
             )}
@@ -91,7 +91,7 @@ export default function MoviePage() {
           {movie.overview && (
             <CardFooter className="p-0 pt-4 flex-col items-start">
               <h3 className="text-xl font-bold flex items-center gap-2 mb-2">
-                <FaFileAlt className="text-muted-foreground" /> Descrição:
+                <FileText className="text-muted-foreground" /> Descrição:
               </h3>
               <p className="text-muted-foreground">{movie.overview}</p>
             </CardFooter>
