@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { MovieCard } from "@/components/movie-card";
 import { searchMovies, Movie } from "@/lib/tmdbService";
 
-export default function SearchPage() {
+function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q");
 
@@ -40,5 +40,13 @@ export default function SearchPage() {
         )}
       </div>
     </main>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto px-4 py-8">Carregando busca...</div>}>
+      <SearchResults />
+    </Suspense>
   );
 }
